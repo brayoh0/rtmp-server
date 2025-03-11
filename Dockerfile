@@ -1,10 +1,7 @@
-# Use an official Nginx base image
-FROM ubuntu:latest
+# Use an Nginx image that includes RTMP
+FROM alfg/nginx-rtmp:latest
 
-# Install Nginx with RTMP module
-RUN apt update && apt install -y nginx libnginx-mod-rtmp
-
-# Copy the Nginx RTMP configuration
+# Copy the RTMP configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose RTMP and HTTP ports
