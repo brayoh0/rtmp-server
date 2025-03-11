@@ -1,13 +1,14 @@
-# RTMP Relay Server Setup (Nginx + RTMP Module)
+# Use an official Nginx base image
+FROM ubuntu:latest
 
-# Install Nginx with RTMP support
+# Install Nginx with RTMP module
 RUN apt update && apt install -y nginx libnginx-mod-rtmp
 
-# Nginx Configuration for RTMP Relay
+# Copy the Nginx RTMP configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose RTMP and HTTP Ports
+# Expose RTMP and HTTP ports
 EXPOSE 1935 80
 
-# Start Nginx Server
+# Start Nginx in foreground mode
 CMD ["nginx", "-g", "daemon off;"]
